@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Dreams 組織・事業概要</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Hiragino Sans', 'Meiryo', sans-serif;
+    background: #F4F6F8;
+    color: #1a1a2e;
+    padding: 24px;
+    font-size: 13px;
+  }
+
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 36px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  }
+
+  /* ヘッダー */
+  .header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #1A5276;
+  }
+  .header h1 { font-size: 26px; color: #1A5276; letter-spacing: 0.1em; }
+  .header p  { font-size: 12px; color: #888; margin-top: 4px; }
+
+  /* セクションタイトル */
+  .section-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    background: #1A5276;
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 3px;
+    margin-bottom: 14px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ━━━ 組織図 ━━━ */
+  .org-section { margin-bottom: 32px; }
+
+  .org-top {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .box-daihyo {
+    background: #1A5276;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 32px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .box-daihyo span { font-size: 11px; font-weight: normal; opacity: 0.8; }
+
+  /* 矢印ライン */
+  .arrow-down {
+    width: 2px;
+    height: 20px;
+    background: #95A5A6;
+    margin: 0 auto;
+  }
+  .arrow-branch {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+    margin-bottom: 0;
+  }
+  .branch-line {
+    width: 50%;
+    height: 20px;
+    border-top: 2px solid #95A5A6;
+    border-left: 2px solid #95A5A6;
+    margin-right: -1px;
+  }
+  .branch-line-right {
+    width: 50%;
+    height: 20px;
+    border-top: 2px solid #95A5A6;
+    border-right: 2px solid #95A5A6;
+    margin-left: -1px;
+  }
+
+  /* 事業部ボックス */
+  .divisions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+  }
+  .division-aso {
+    background: #E8F8EE;
+    border: 2px solid #1E8449;
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .division-core {
+    background: #FDEDEC;
+    border: 2px solid #922B21;
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .division-title {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .division-aso .division-title  { color: #1E8449; }
+  .division-core .division-title { color: #922B21; }
+  .division-label {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 12px;
+  }
+
+  /* サブグループ */
+  .subgroups { display: flex; gap: 8px; flex-wrap: wrap; }
+  .subgroup {
+    border-radius: 7px;
+    padding: 8px 12px;
+    text-align: center;
+    flex: 1;
+    min-width: 80px;
+  }
+  .subgroup-aso  { background: #1E8449; color: #fff; }
+  .subgroup-core { background: #922B21; color: #fff; }
+  .subgroup .name  { font-size: 12px; font-weight: bold; }
+  .subgroup .person { font-size: 10px; opacity: 0.85; margin-top: 2px; }
+
+  /* 事務経理 */
+  .jimu {
+    background: #626567;
+    color: #fff;
+    border-radius: 7px;
+    padding: 8px 20px;
+    text-align: center;
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+  .jimu span { font-size: 10px; font-weight: normal; opacity: 0.8; margin-left: 8px; }
+
+  /* ━━━ 事業フロー ━━━ */
+  .flow-section { margin-bottom: 32px; }
+  .flow-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .flow-box {
+    border-radius: 10px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .flow-student { background: #EAF2FF; border: 2px solid #2471A3; color: #1A5276; }
+  .flow-aso     { background: #E8F8EE; border: 2px solid #1E8449; color: #1E5837; }
+  .flow-core    { background: #FDEDEC; border: 2px solid #922B21; color: #7B241C; }
+  .flow-company { background: #FEF9E7; border: 2px solid #D4AC0D; color: #7D6608; }
+
+  .flow-box .flow-label { font-size: 10px; opacity: 0.7; margin-bottom: 3px; }
+  .flow-box .flow-main  { font-size: 14px; font-weight: bold; }
+  .flow-box .flow-sub   { font-size: 10px; margin-top: 3px; opacity: 0.75; }
+
+  .flow-arrow {
+    font-size: 22px;
+    color: #95A5A6;
+    padding: 0 8px;
+    line-height: 1;
+  }
+  .flow-point {
+    font-size: 10px;
+    color: #555;
+    text-align: center;
+    margin-top: 10px;
+    background: #F9F9F9;
+    border-radius: 6px;
+    padding: 8px 16px;
+    line-height: 1.8;
+  }
+  .flow-point strong { color: #1A5276; }
+
+  /* ━━━ 部署別役割 ━━━ */
+  .roles-section { margin-bottom: 32px; }
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .role-card {
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid #E0E0E0;
+  }
+  .role-card .role-dept {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 6px;
+    display: inline-block;
+    color: #fff;
+  }
+  .role-card .role-name { font-size: 13px; font-weight: bold; margin-bottom: 2px; }
+  .role-card .role-person { font-size: 10px; color: #888; margin-bottom: 8px; }
+  .role-card ul { padding-left: 14px; }
+  .role-card li { font-size: 11px; color: #444; line-height: 1.7; }
+
+  .tag-aso  { background: #1E8449; }
+  .tag-core { background: #922B21; }
+  .tag-all  { background: #626567; }
+
+  /* ━━━ ビジネスモデル ━━━ */
+  .biz-section { }
+  .biz-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .biz-card {
+    border-radius: 8px;
+    padding: 14px;
+    background: #F8F9FA;
+    border-left: 4px solid #1A5276;
+  }
+  .biz-card .biz-type { font-size: 10px; color: #888; margin-bottom: 4px; }
+  .biz-card .biz-price { font-size: 18px; font-weight: bold; color: #1A5276; }
+  .biz-card .biz-unit  { font-size: 10px; color: #888; margin-left: 2px; }
+  .biz-card .biz-desc  { font-size: 11px; color: #555; margin-top: 6px; line-height: 1.6; }
+
+  .concept-bar {
+    background: #1A5276;
+    color: #fff;
+    border-radius: 7px;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 14px;
+    letter-spacing: 0.05em;
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <h1>Dreams（ドリームズ）</h1>
+    <p>組織図・事業関係図・ビジネスモデル｜内部共有資料</p>
+  </div>
+
+  <!-- ① 組織図 -->
+  <div class="org-section">
+    <div class="section-title">① 組織図</div>
+
+    <div class="org-top">
+      <div class="box-daihyo">代表<br><span>大原</span></div>
+    </div>
+    <div class="arrow-down"></div>
+
+    <div class="divisions">
+      <!-- ASO Vision -->
+      <div class="division-aso">
+        <div class="division-title">ASO Vision</div>
+        <div class="division-label">入口部門｜学生集客・イベント</div>
+        <div class="subgroups">
+          <div class="subgroup subgroup-aso">
+            <div class="name">学生集客</div>
+            <div class="person">大柴</div>
+          </div>
+          <div class="subgroup subgroup-aso">
+            <div class="name">SNS</div>
+            <div class="person">愛菜</div>
+          </div>
+          <div class="subgroup subgroup-aso">
+            <div class="name">イベント</div>
+            <div class="person">岩男</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Support -->
+      <div class="division-core">
+        <div class="division-title">Core Support</div>
+        <div class="division-label">出口部門｜面談・マッチング</div>
+        <div class="subgroups">
+          <div class="subgroup subgroup-core">
+            <div class="name">学生面談</div>
+            <div class="person">ジョワード</div>
+          </div>
+          <div class="subgroup subgroup-core">
+            <div class="name">法人営業</div>
+            <div class="person">大原</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 事務経理 -->
+    <div class="jimu">事務・経理：恵生<span>※全部門共通</span></div>
+  </div>
+
+  <!-- ② 事業フロー -->
+  <div class="flow-section">
+    <div class="section-title">② 事業の流れ（入口 → 出口）</div>
+
+    <div class="flow-wrap">
+      <div class="flow-box flow-student">
+        <div class="flow-label">START</div>
+        <div class="flow-main">学生</div>
+        <div class="flow-sub">就活前・未経験</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box flow-aso">
+        <div class="flow-label">ASO Vision</div>
+        <div class="flow-main">イベント参加</div>
+        <div class="flow-sub">遊びながら企業と出会う</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box flow-core">
+        <div class="flow-label">Core Support</div>
+        <div class="flow-main">登録・面談</div>
+        <div class="flow-sub">AI診断 / アドバイザー</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box flow-company">
+        <div class="flow-label">GOAL</div>
+        <div class="flow-main">企業</div>
+        <div class="flow-sub">インターン・採用成立</div>
+      </div>
+    </div>
+
+    <div class="flow-point">
+      <strong>2事業は独立ではなく連動したエコシステム。</strong><br>
+      ASO Visionで心理的ハードルを下げ → Core Supportで採用という具体的な結果につなげる
+    </div>
+  </div>
+
+  <!-- ③ 部署別役割 -->
+  <div class="roles-section">
+    <div class="section-title">③ 部署別の役割</div>
+
+    <div class="roles-grid">
+      <div class="role-card">
+        <span class="role-dept tag-aso">ASO Vision</span>
+        <div class="role-name">学生集客</div>
+        <div class="role-person">担当：大柴</div>
+        <ul>
+          <li>個人の横つながりを活用した学生動員</li>
+          <li>SNS経由での集客</li>
+          <li>参加後フォロー（LINE等）</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <span class="role-dept tag-aso">ASO Vision</span>
+        <div class="role-name">SNS</div>
+        <div class="role-person">担当：愛菜</div>
+        <ul>
+          <li>SNSアカウント運用</li>
+          <li>情報発信・コンテンツ制作</li>
+          <li>認知拡大施策</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <span class="role-dept tag-aso">ASO Vision</span>
+        <div class="role-name">イベント</div>
+        <div class="role-person">担当：岩男</div>
+        <ul>
+          <li>イベント企画・運営</li>
+          <li>当日の進行・対応</li>
+          <li>企業・学生の場づくり</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <span class="role-dept tag-core">Core Support</span>
+        <div class="role-name">学生面談</div>
+        <div class="role-person">担当：ジョワード</div>
+        <ul>
+          <li>月1回30分の定期面談</li>
+          <li>キャリア支援・相談対応</li>
+          <li>学生が学生を支援するモデル</li>
+        </ul>
+      </div>
+      <div class="role-card">
+        <span class="role-dept tag-core">Core Support</span>
+        <div class="role-name">法人営業</div>
+        <div class="role-person">担当：大原</div>
+        <ul>
+          <li>企業の採用要件ヒアリング</li>
+          <li>システム利用サポート</li>
+          <li>ASO Visionへの企業誘致</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ ビジネスモデル -->
+  <div class="biz-section">
+    <div class="section-title">④ ビジネスモデル（収益構造）</div>
+    <div class="concept-bar">コンセプト：採用単価の価格破壊｜中小企業でも使いやすい採用支援を実現</div>
+    <div class="biz-grid">
+      <div class="biz-card">
+        <div class="biz-type">Core Support｜月額</div>
+        <div class="biz-price">10,000<span class="biz-unit">円 / 社・月</span></div>
+        <div class="biz-desc">システム利用料（固定収益）<br>目標：50社 = 月額50万円の安定収入</div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-type">ASO Vision｜イベント参加費</div>
+        <div class="biz-price">3〜5<span class="biz-unit">万円 / 社・回</span></div>
+        <div class="biz-desc">企業がイベントに参加する際の費用</div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-type">インターン採用｜成果報酬</div>
+        <div class="biz-price">70,000<span class="biz-unit">円 / 件</span></div>
+        <div class="biz-desc">業界相場の1/4〜1/5<br>低価格で中小企業にも対応</div>
+      </div>
+      <div class="biz-card">
+        <div class="biz-type">本採用｜成果報酬</div>
+        <div class="biz-price">200,000<span class="biz-unit">円 / 件</span></div>
+        <div class="biz-desc">中小企業が使いやすい価格設定</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
